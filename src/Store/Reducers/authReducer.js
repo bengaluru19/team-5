@@ -1,8 +1,9 @@
-import {SET_CURRENT_USER} from '../Actions/types';
+import {SET_CURRENT_USER,GET_CURRENT_LOC} from '../Actions/types';
 const initialState={
     isAuthenticated:false,
     utype:"",
-    user:{}
+    user:{},
+    location:null
 }
 export default function(state=initialState,action){
     switch(action.type){
@@ -13,6 +14,11 @@ export default function(state=initialState,action){
                 utype:action.payload.utype,
                 user:action.payload
             }
+        case GET_CURRENT_LOC:
+        return{
+            ...state,
+            location:action.payload
+        }
         default:
             return state;
     }

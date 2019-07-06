@@ -13,7 +13,7 @@ export default class VendorItem extends Component {
                 <img src={data.imgUrl} />
                 </div>
                 <div className="col-md-9">
-                <Link to={`/user/Search/vendor/${refer}`} >
+                <Link to={`/user/search/vendor/${refer}`} >
                 {data.name}
                 </Link>
                 </div>

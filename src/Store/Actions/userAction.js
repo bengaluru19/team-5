@@ -1,5 +1,5 @@
 import firebase from "../../Firebase/Firebase"
-import {GET_VENDOR_ITEM,GET_VENDOR_ITEMS, GET_VENDORS} from "./types"
+import {GET_VENDOR_ITEM,GET_VENDOR_ITEMS, GET_VENDORS,GET_VENDOR, ADD_TO_CART, REMOVE_FROM_CART} from "./types"
 const database = firebase.database()
 
 export const getVendors = ()=>dispatch=>{
@@ -9,6 +9,15 @@ export const getVendors = ()=>dispatch=>{
         dispatch({
             type:GET_VENDORS,
             payload:data
+        })
+    })
+}
+
+export const getVendor = (vid)=>dispatch=>{
+    database.ref("vendor/"+vid).once("value").then(snapshot=>{
+        dispatch({
+            type: GET_VENDOR,
+            payload: snapshot.val()
         })
     })
 }
@@ -29,5 +38,22 @@ export const getVendorItem = (vid,index)=>dispatch=>{
             type:GET_VENDOR_ITEM,
             payload:value
         })
+    })
+}
+
+export const addToCart = (Iid,quantity)=>dispatch=>{
+    dispatch({
+        type:ADD_TO_CART,
+        payload:{
+            Iid:Iid,
+            quantity:quantity
+        }
+    })
+}
+
+export const removeFromCart = (index)=>dispatch=>{
+    dispatch({
+        type:REMOVE_FROM_CART,
+        payload:index
     })
 }

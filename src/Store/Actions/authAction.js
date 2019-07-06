@@ -1,4 +1,4 @@
-import {SET_CURRENT_USER} from "../Actions/types"
+import {SET_CURRENT_USER,GET_CURRENT_LOC} from "../Actions/types"
 //actions for authentication
 import firebase from "../../Firebase/Firebase"
 const database = firebase.database()
@@ -12,7 +12,15 @@ export const getCurrentProfile = (uid)=>dispatch=>{
         dispatch(setCurrentUser(data))
     })
 }
-
+export const setCurrentLocation = (position)=>dispatch=>{
+    dispatch({
+        type:GET_CURRENT_LOC,
+        payload:{
+            latitude:position.coords.latitude,
+            longitude:position.coords.longitude
+        }
+    })
+}
 export const setCurrentUser = (data)=>{
     return {
         type:SET_CURRENT_USER,
