@@ -8,9 +8,12 @@ class UserDashboard extends Component {
       super(props)
     
       this.state = {
-         search:""
+         search:"",
+         constraints:{},
+         term:""
       };
       this.searchChange = this.searchChange.bind(this)
+      this.searchList = this.searchList.bind(this)
     };
     
     componentDidMount(){
@@ -22,12 +25,12 @@ class UserDashboard extends Component {
     }
     searchList(e){
         e.preventDefault()
-        console("this is great",this.state.search)
+        const {search} = this.state
+        this.setState({term:search})
     }
     render() {
         const {user} = this.props.auth;
         let view;
-        console.log(user)
         if(Object.keys(user).length>0){
             view=<div>            
             <div>
@@ -36,8 +39,9 @@ class UserDashboard extends Component {
             Welcome {user.name}
             </div>
             <div className="col-md-8">
-            <form>
+            <form onSubmit={this.searchList}>
             <input type="text" name="search" className="form-control" value={this.state.search} onChange={this.searchChange} placeholder="search topic" />
+            <button type="submit" className="btn btn-primary">Search</button>
             </form>
             </div>
             </div>
@@ -47,7 +51,7 @@ class UserDashboard extends Component {
             filtering options
             </div>
             <div className="col-md-9">
-            <VendorList />
+            <VendorList term={this.state.term} contraints={this.state.constraints} />
             </div>
             </div>
             </div>

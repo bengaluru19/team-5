@@ -19,7 +19,7 @@ class VendorList extends Component {
         let view;
         if(vendors){
             view=Object.keys(vendors).map((key,i)=>{
-                return <VendorItem data={vendors[key]} />
+                return <VendorItem refer={key} data={vendors[key]} />
             })
         }else{
             view=<p>Empty list</p>
