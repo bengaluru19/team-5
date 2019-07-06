@@ -24,7 +24,6 @@ function App() {
     <Route path="/vendor/register" component={VendorRegister}/>
     <Route path="/user/login" component={UserLogin}/>
     <Route path="/user/dashboard" component={UserDashboard} />
-
     </div>
     </div>
     </Router>

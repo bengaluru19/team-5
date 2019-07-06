@@ -1,1 +1,6 @@
 export const SET_CURRENT_USER = "SET_CURRENT_USER"
+export const GET_VENDOR_ITEMS = "GET_VENDOR_ITEMS"
+export const GET_VENDOR_ITEM = "GET_VENDOR_ITEM"
+export const ADD_TO_CART = "ADD_TO_CART"
+export const REMOVE_FROM_CART = "REMOVE_FROM_CART"
+export const GET_VENDORS = "GET_VENDORS"

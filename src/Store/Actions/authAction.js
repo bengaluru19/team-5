@@ -1,3 +1,4 @@
+import {SET_CURRENT_USER} from "../Actions/types"
 //actions for authentication
 import firebase from "../../Firebase/Firebase"
 const database = firebase.database()
@@ -5,13 +6,11 @@ const database = firebase.database()
 
 export const getCurrentProfile = (uid)=>dispatch=>{
     const user = firebase.auth().currentUser
-    database.ref("user/"+uid).once().then(snapshot=>{
-        disptach(setCurrentUser(snapshot.val()))
+    database.ref("user/"+uid).once("value").then(snapshot=>{
+        const data=snapshot.val()
+        data.utype="user"
+        dispatch(setCurrentUser(data))
     })
-}
-
-export const getVendors = (location)=>dispatch=>{
-
 }
 
 export const setCurrentUser = (data)=>{
