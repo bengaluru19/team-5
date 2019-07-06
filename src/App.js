@@ -10,8 +10,7 @@ import UserLogin from "./Components/Auth/subcomponents/UserLogin";
 import VendorLogin from "./Components/Auth/subcomponents/VendorLogin";
 import UserRegister from "./Components/Auth/subcomponents/UserRegister"
 import VendorRegister from "./Components/Auth/subcomponents/VendorRegister";
-
-
+import UserDashboard from "./Components/Dashboard/UserDashboard"
 function App() {
   return (
     <Provider store={store}>
@@ -24,6 +23,7 @@ function App() {
     <Route path="/vendor/login" component={VendorLogin}/>
     <Route path="/vendor/register" component={VendorRegister}/>
     <Route path="/user/login" component={UserLogin}/>
+    <Route path="/user/dashboard" component={UserDashboard} />
 
     </div>
     </div>

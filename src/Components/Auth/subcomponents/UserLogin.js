@@ -50,10 +50,11 @@ class UserLogin extends Component {
             if(object.isNewUser){
                 console.log("new user")
             }else{
+                localStorage.setItem("uid",object.user.uid)
                 this.props.history.push("/user/dashboard")
-            }
-        })    
-    }
+        }
+    })    
+}
     
     render() {
         return (
@@ -62,7 +63,7 @@ class UserLogin extends Component {
             <input id="recaptcha-container" type="button" onClick={this.onClick} />
             <div className="form-group">
               <label htmlFor="otp">Phone Number:</label>
-              <input type="tel" pattern="[0-9]{10}" onChange={this.onChangeText} className="form-control" id="phone" placeholder="Enter Phone Number" name="phone" />
+              <input type="tel" pattern="+(91)[0-9]{10}" onChange={this.onChangeText} className="form-control" id="phone" placeholder="Enter Phone Number" name="phone" />
               <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
             </div>
             <div className="form-group">
