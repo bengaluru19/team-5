@@ -1,33 +1,73 @@
 import React, { Component } from 'react'
-
-export default class UserLogin extends Component {
+import firebase from "../../../Firebase/Firebase"
+import {withRouter} from "react-router-dom"
+import {connect} from "react-redux"
+import PropTypes from "prop-types"
+class UserLogin extends Component {
     constructor(props) {
       super(props)
     
       this.state = {
          phone:"",
-         otp:""
+         otp:"",
+         confirmResult:null
       };
+      
+      this.onChangeText = this.onChangeText.bind(this)
+      this.onSubmit=this.onSubmit.bind(this)
+      this.onClick = this.onClick.bind(this)
     };
+    componentDidMount () {
+        window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier("recaptcha-container",
+    {
+       size:"invisible"
+        // other options
+    });
+    }
+    onClick() {
+        const phoneNumber = this.state.phone;
+        const appVerifier = window.recaptchaVerifier;
+        firebase
+        .auth()
+        .signInWithPhoneNumber(phoneNumber, appVerifier)
+        .then(confirmResult1 => {
+          // success
+          this.setState({confirmResult:confirmResult1})
+        })
+        .catch(error => {
+          // error
+          console.log(error)
+        });
+    }
     onChangeText(e){
         this.setState({[e.target.name]:e.target.value})
     }
     onSubmit(e){
         e.preventDefault()
+        //changing
+        this.state.confirmResult.confirm(this.state.otp).then(object=>{
+            console.log(object,"success")
+            if(object.isNewUser){
+                console.log("new user")
+            }else{
+                this.props.history.push("/user/dashboard")
+            }
+        })    
     }
     
     render() {
         return (
             <div>
-            <form>
-            <div class="form-group">
-              <label for="otp">Phone Number:</label>
-              <input type="tel" pattern="[0-9]{10}" class="form-control" id="phone" placeholder="Enter Phone Number" name="phone" />
-              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            <form onSubmit={this.onSubmit}>
+            <input id="recaptcha-container" type="button" onClick={this.onClick} />
+            <div className="form-group">
+              <label htmlFor="otp">Phone Number:</label>
+              <input type="tel" pattern="[0-9]{10}" onChange={this.onChangeText} className="form-control" id="phone" placeholder="Enter Phone Number" name="phone" />
+              <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
             </div>
-            <div class="form-group">
-              <label for="otp">OTP</label>
-              <input type="password" class="form-control" id="otp" name="otp" placeholder="enter otp" />
+            <div className="form-group">
+              <label htmlFor="otp">OTP</label>
+              <input type="password" className="form-control" onChange={this.onChangeText} id="otp" name="otp" placeholder="enter otp" />
             </div>
             {
             //     <div class="form-group form-check">
@@ -35,9 +75,11 @@ export default class UserLogin extends Component {
             //   <label class="form-check-label" for="exampleCheck1">Check me out</label>
             // </div>
         }
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" className="btn btn-primary">Submit</button>
           </form>
             </div>
         )
     }
 }
+
+export default connect(null)(withRouter(UserLogin))
