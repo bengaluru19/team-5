@@ -6,8 +6,11 @@ import {BrowserRouter as Router, Route} from "react-router-dom";
 //components area
 import Landing from "./Components/Common/Landing";
 import Navigation  from "./Components/Common/Navigation";
-import Login from "./Components/Auth/Login";
-import Register from "./Components/Auth/Register";
+import UserLogin from "./Components/Auth/subcomponents/UserLogin";
+import VendorLogin from "./Components/Auth/subcomponents/VendorLogin";
+import UserRegister from "./Components/Auth/subcomponents/UserRegister"
+import VendorRegister from "./Components/Auth/subcomponents/VendorRegister";
+
 
 function App() {
   return (
@@ -17,8 +20,11 @@ function App() {
     <Navigation />
     <div className="container">
     <Route exact path="/" component={ Landing } />
-    <Route path="/register" component={Register} />
-    <Route path="/login" component={Login}/>
+    <Route path="/user/register" component={UserRegister} />
+    <Route path="/vendor/login" component={VendorLogin}/>
+    <Route path="/vendor/register" component={VendorRegister}/>
+    <Route path="/user/login" component={UserLogin}/>
+
     </div>
     </div>
     </Router>

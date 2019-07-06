@@ -6,7 +6,7 @@ export default class Navigation extends Component {
         return (
             <div>
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-  <Navbar.Brand href="#home">U-V</Navbar.Brand>
+  <Link to="/" className="f6 text-gray">U-V</Link>
   <Navbar.Toggle aria-controls="responsive-navbar-nav" />
   <Navbar.Collapse id="responsive-navbar-nav">
     
@@ -23,8 +23,8 @@ export default class Navigation extends Component {
   }
   </Nav>
     <Nav>
-      <Link to='/register'>Register</Link>
-      <Link to='/login'>
+      <Link to='/register' className="mh1">Register</Link>
+      <Link to='/login' className="mh1">
         Login
       </Link>
     </Nav>
