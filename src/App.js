@@ -6,6 +6,9 @@ import {BrowserRouter as Router, Route} from "react-router-dom";
 //components area
 import Landing from "./Components/Common/Landing";
 import Navigation  from "./Components/Common/Navigation";
+import Login from "./Components/Auth/Login";
+import Register from "./Components/Auth/Register";
+
 function App() {
   return (
     <Provider store={store}>
@@ -13,8 +16,9 @@ function App() {
     <div className="App">
     <Navigation />
     <div className="container">
-    <Route path="/" component={ Landing } />
-    
+    <Route exact path="/" component={ Landing } />
+    <Route path="/register" component={Register} />
+    <Route path="/login" component={Login}/>
     </div>
     </div>
     </Router>
