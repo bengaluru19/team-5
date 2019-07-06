@@ -12,7 +12,7 @@ class UserDashboard extends Component {
          constraints:{},
          category:"all",
          term:"",
-         radius:3,
+         rad:3,
          types:[]
       };
       this.searchChange = this.searchChange.bind(this)
@@ -95,7 +95,8 @@ class UserDashboard extends Component {
             <Card.Body>
             <Nav variant="pills" defaultActiveKey={3} className="flex-column">
         <Nav.Link eventKey={3} onSelect={this.radiusSelect.bind(this,3)}>3</Nav.Link>
-        <Nav.Link eventKey={10} onSelect={this.radiusSelect.bind(this,100)}>10</Nav.Link>
+        
+        <Nav.Link eventKey={10} onSelect={this.radiusSelect.bind(this,10)}>10</Nav.Link>
             </Nav>
             </Card.Body>
             </Card>

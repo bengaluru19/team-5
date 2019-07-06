@@ -17,7 +17,7 @@ class VendorList extends Component {
     render() {
         const {vendors} = this.props.user;
         const {location} = this.props.auth;
-        const {term,constraints,category,radius} = this.props;
+        const {term,category,radius} = this.props;
         let view;
         if(vendors){
             view=Object.keys(vendors).map((key,i)=>{

@@ -21,9 +21,33 @@ export const setCurrentLocation = (position)=>dispatch=>{
         }
     })
 }
+
 export const setCurrentUser = (data)=>{
     return {
         type:SET_CURRENT_USER,
         payload:data
     }
+}
+
+
+/////vendor side
+
+export const createVendorAccount = (data,uid)=>{
+    let updates={}
+    updates["vendor/"+uid]=data;
+    database.ref().update(updates).then(res=>{
+        console.log(res)
+    })
+    .catch(err=>{
+        console.log(err)
+    })
+}
+
+export const getVendorAccount = (uid)=>{
+    const user = firebase.auth().currentUser
+    database.ref("vendor/"+uid).once("value").then(snapshot=>{
+        const data=snapshot.val()
+        data.utype="vendor"
+        dispatch(setCurrentUser(data))
+    })
 }
