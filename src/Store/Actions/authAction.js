@@ -43,7 +43,7 @@ export const createVendorAccount = (data,uid)=>{
     })
 }
 
-export const getVendorAccount = (uid)=>{
+export const getVendorAccount = (uid)=>dispatch=>{
     const user = firebase.auth().currentUser
     database.ref("vendor/"+uid).once("value").then(snapshot=>{
         const data=snapshot.val()

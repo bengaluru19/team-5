@@ -45,8 +45,9 @@ export default class VendorLogin extends Component {
           //changing
           this.state.confirmResult.confirm(this.state.otp).then(object=>{
               console.log(object,"success")
-              if(object.isNewUser){
+              if(object.additionalUserInfo.isNewUser){
                   this.props.history.push("/vendor/register")
+                  localStorage.setItem("uid",object.user.uid)
               }else{
                   localStorage.setItem("uid",object.user.uid)
                   this.props.history.push("/vendor/dashboard")
