@@ -8,10 +8,9 @@ class Navigation extends Component {
         return (
             <div>
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-  <Link to="/" className="f6 text-gray">U-V</Link>
+  <Link to="/" className="f3 text-gray">U-V</Link>
   <Navbar.Toggle aria-controls="responsive-navbar-nav" />
   <Navbar.Collapse id="responsive-navbar-nav">
-    
       <Nav className="mr-auto">
     {  // <Nav.Link href="#features">Features</Nav.Link>
       // <Nav.Link href="#pricing">Pricing</Nav.Link>
@@ -29,12 +28,7 @@ class Navigation extends Component {
 
   </Nav>
     {
-      Object.keys(auth.user).length===0?<Nav>
-      <Link to='/register' className="mh1">Register</Link>
-      <Link to='/login' className="mh1">
-        Login
-      </Link>
-    </Nav>:null
+      
     }
   </Navbar.Collapse>
 </Navbar>
