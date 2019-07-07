@@ -10,6 +10,7 @@ import UserLogin from "./Components/Auth/subcomponents/UserLogin";
 import VendorLogin from "./Components/Auth/subcomponents/VendorLogin";
 import UserRegister from "./Components/Auth/subcomponents/UserRegister"
 import VendorRegister from "./Components/Auth/subcomponents/VendorRegister";
+import VendorDashboard from "./Components/Dashboard/VendorDashboard"; 
 import UserDashboard from "./Components/Dashboard/UserDashboard";
 import Vendor from "./Components/Vendor/Vendor"
 function App() {
@@ -25,6 +26,7 @@ function App() {
     <Route path="/vendor/register" component={VendorRegister}/>
     <Route path="/user/login" component={UserLogin}/>
     <Route path="/user/dashboard" component={UserDashboard} />
+    <Route path="/vendor/dashboard" component = {VendorDashboard} />
     <Route path="/user/search/vendor/:vid" component={Vendor} />
     </div>
     </div>

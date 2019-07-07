@@ -13,14 +13,17 @@ class VendorRegister extends Component {
       };
       this.onChangeHandler=this.onChangeHandler.bind(this)
       this.onSubmit = this.onSubmit.bind(this)
+      this.onChange = this.onChange.bind(this)
+      this.getGeoLocation=this.getGeoLocation.bind(this)
     };
     onChangeHandler(e){
         this.setState({selectedFile:e.target.files[0]})
     }
     getGeoLocation(){
+        let temp=this
         if(navigator.geolocation){
             navigator.geolocation.getCurrentPosition((position)=>{
-                this.setState({location:{
+                temp.setState({location:{
                     latitude:position.coords.latitude,
                     longitude:position.coords.longitude
                 }})
@@ -29,14 +32,16 @@ class VendorRegister extends Component {
             console.log("geolocation error")
         }
     }
+    onChange(e){
+        this.setState({[e.target.name]:e.target.value});
+    }
     onSubmit(e){
         e.preventDefault()
-        const storage = firebase.storage()
-        storage.ref().put(this.state.selectedFile)
-        let data={
-            name:this.state.name,
-            location:this.state.selectedFile
-        }
+        console.log(this.state.selectedFile)
+            let data={
+                name:this.state.name,
+                location:this.state.selectedFile
+            }
         let uid = localStorage.getItem("uid")
         this.props.createVendorAccount(data,uid)
     }
@@ -46,16 +51,17 @@ class VendorRegister extends Component {
             <div>
                 <form onSubmit = {this.onSubmit}>
                 <div className="form-group">
-                <input type="text" name="name" value={this.state.name}/>
+                <input type="text" name="name" value={this.state.name} onChange={this.onChange}/>
                 </div>
                 <div className="form-group">
                 <button type="button" onClick={this.getGeoLocation}>
                 Determine Location
                 </button>
-                </div>
-                <div className="form-group">
-                <input type="file" name="file" onChange={this.onChangeHandler}/>
-                </div>
+                </div>{
+                // <div className="form-group">
+                // <input type="file" name="file" onChange={this.onChangeHandler}/>
+                // </div>
+                }
                 <button type="submit">
                 submit
                 </button>
