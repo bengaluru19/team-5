@@ -47,12 +47,12 @@ class UserLogin extends Component {
         //changing
         this.state.confirmResult.confirm(this.state.otp).then(object=>{
             console.log(object,"success")
-            if(object.isNewUser){
+            
                 console.log("new user")
-            }else{
+            
                 localStorage.setItem("uid",object.user.uid)
                 this.props.history.push("/user/dashboard")
-        }
+        
     })    
 }
     
@@ -66,7 +66,6 @@ class UserLogin extends Component {
             <div className="form-group">
               <label htmlFor="otp">Phone Number:</label>
               <input type="tel" pattern="+(91)[0-9]{10}" onChange={this.onChangeText} className="form-control" id="phone" placeholder="Enter Phone Number" name="phone" />
-              <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
               <input id="recaptcha-container" type="button" value="get OTP" className="btn btn-warning" onClick={this.onClick} />
               </div>
             <div className="form-group">

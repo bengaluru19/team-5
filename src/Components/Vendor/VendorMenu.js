@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import {Card,Button} from "react-bootstrap"
+import firebase from "../../Firebase/Firebase"
+const database = firebase.database()
 export default class VendorMenu extends Component {
     constructor(props) {
       super(props)
@@ -15,15 +17,10 @@ export default class VendorMenu extends Component {
         })
         this.setState({checker:temp})
     }
-    increaseCount(index){
-        let checker1 = this.state.checker;
-        checker1[index].quantity+=1
-        this.setState({checker:checker1})
-    }
-    decreaseCount(index){
-        let checker1 = this.state.checker;
-        checker1[index].quantity-=(checker1[index].quantity===0)?0:1
-        this.setState({checker:checker1})
+    
+    addToCart(data){
+        let uid = localStorage.getItem("uid");
+        database.ref("user/"+uid+"/cart").push(data);
     }
     render() {
         const {data} = this.props;
@@ -38,15 +35,9 @@ export default class VendorMenu extends Component {
             {obj.price}
             </div>
             <div className="col-sm-4">
-            <Button variant="success" >
-            Up
-            </Button>
-            {
-                0
-            }
-            <Button variant="danger">
-            Down
-            </Button>
+            
+            <Button variant="outline-success" onClick={this.addToCart.bind(this,obj)}>Add to Card</Button>
+            
             </div>
             </div>
             </Card.Body>

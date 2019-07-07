@@ -4,7 +4,8 @@ import {Link} from "react-router-dom"
 import {connect} from "react-redux" 
 class Navigation extends Component {
     render() {
-      const {auth} = this.props
+      const {auth} = this.props;
+      const uid = localStorage.getItem("uid");
         return (
             <div>
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -28,7 +29,7 @@ class Navigation extends Component {
 
   </Nav>
     {
-      
+      auth.utype==="user"?<Link to={`/cart/${uid}`}>cart</Link>:null
     }
   </Navbar.Collapse>
 </Navbar>

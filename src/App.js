@@ -13,6 +13,7 @@ import VendorRegister from "./Components/Auth/subcomponents/VendorRegister";
 import VendorDashboard from "./Components/Dashboard/VendorDashboard"; 
 import UserDashboard from "./Components/Dashboard/UserDashboard";
 import Vendor from "./Components/Vendor/Vendor"
+import Cart from "./Components/Vendor/Cart"
 function App() {
   return (
     <Provider store={store}>
@@ -28,6 +29,7 @@ function App() {
     <Route path="/user/dashboard" component={UserDashboard} />
     <Route path="/vendor/dashboard" component = {VendorDashboard} />
     <Route path="/user/search/vendor/:vid" component={Vendor} />
+    <Route path="/cart/:uid" component={Cart} />
     </div>
     </div>
     </Router>
