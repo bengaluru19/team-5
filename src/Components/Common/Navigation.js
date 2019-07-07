@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import {Navbar,Nav,NavDropdown} from "react-bootstrap"
 import {Link} from "react-router-dom"
-export default class Navigation extends Component {
+import {connect} from "react-redux" 
+class Navigation extends Component {
     render() {
+      const {auth} = this.props
         return (
             <div>
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -21,13 +23,19 @@ export default class Navigation extends Component {
       //   <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
       // </NavDropdown>
   }
+  {
+    
+  }
+
   </Nav>
-    <Nav>
+    {
+      Object.keys(auth.user).length===0?<Nav>
       <Link to='/register' className="mh1">Register</Link>
       <Link to='/login' className="mh1">
         Login
       </Link>
-    </Nav>
+    </Nav>:null
+    }
   </Navbar.Collapse>
 </Navbar>
                 
@@ -35,3 +43,9 @@ export default class Navigation extends Component {
         )
     }
 }
+
+const mapStateToProps = state=>({
+  auth:state.auth
+})
+
+export default connect(mapStateToProps)(Navigation)

@@ -47,7 +47,7 @@ class VendorDashboard extends Component {
                 <div className="col-sm-8">
                 <Card>
                 <Card.Header>
-                Online Orders for you
+                <h5>Online Orders for you</h5>
                 </Card.Header>
                 <Card.Body>
                 <OrderList users={user} />
