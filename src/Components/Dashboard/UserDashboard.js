@@ -95,7 +95,7 @@ class UserDashboard extends Component {
             <Card.Body>
             <Nav variant="pills" defaultActiveKey={3} className="flex-column">
         <Nav.Link eventKey={3} onSelect={this.radiusSelect.bind(this,3)}>3</Nav.Link>
-        
+        <Nav.Link eventKey={5} onSelect={this.radiusSelect.bind(this,5)}>5</Nav.Link>
         <Nav.Link eventKey={10} onSelect={this.radiusSelect.bind(this,10)}>10</Nav.Link>
             </Nav>
             </Card.Body>
