@@ -83,7 +83,10 @@ class UserDashboard extends Component {
             </div>
             <div className="row">
             <div className="col-md-3">
-            <Card>
+            <Card className="mb2">
+            <Card.Header>
+            <h5>Categories</h5>
+            </Card.Header>
             <Card.Body>
             <Nav variant="pills" defaultActiveKey="all" className="flex-column">
         <Nav.Link eventKey="all" onSelect={this.contraintSelect.bind(this,"all")}>All</Nav.Link>
@@ -91,7 +94,10 @@ class UserDashboard extends Component {
             </Nav>
             </Card.Body>
             </Card>
-            <Card>
+            <Card className="mv2">
+            <Card.Header>
+            <h5>Range</h5>
+            </Card.Header>
             <Card.Body>
             <Nav variant="pills" defaultActiveKey={3} className="flex-column">
         <Nav.Link eventKey={3} onSelect={this.radiusSelect.bind(this,3)}>3</Nav.Link>

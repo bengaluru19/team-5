@@ -22,9 +22,9 @@ function App() {
     <Navigation />
     <div className="container">
     <Route exact path="/" component={ Landing } />
-    <Route path="/user/register" component={UserRegister} />
+    <Route path="/user/register/:phno" component={UserRegister} />
     <Route path="/vendor/login" component={VendorLogin}/>
-    <Route path="/vendor/register" component={VendorRegister}/>
+    <Route path="/vendor/register/:phno" component={VendorRegister}/>
     <Route path="/user/login" component={UserLogin}/>
     <Route path="/user/dashboard" component={UserDashboard} />
     <Route path="/vendor/dashboard" component = {VendorDashboard} />
