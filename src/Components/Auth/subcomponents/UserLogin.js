@@ -47,12 +47,13 @@ class UserLogin extends Component {
         //changing
         this.state.confirmResult.confirm(this.state.otp).then(object=>{
             console.log(object,"success")
-            
-                console.log("new user")
-            
+            if(object.additionalUserInfo.isNewUser){
+                localStorage.setItem("uid",object.user.uid)
+                this.props.history.push("/user/register/"+this.state.phone)
+            }else{
                 localStorage.setItem("uid",object.user.uid)
                 this.props.history.push("/user/dashboard")
-        
+            }    
     })    
 }
     

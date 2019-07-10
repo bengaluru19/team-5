@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import firebase from "../../../Firebase/Firebase"
 import {connect} from "react-redux"
 import {createVendorAccount} from "../../../Store/Actions/authAction"
+import {withRouter} from "react-router-dom"
+const database = firebase.database()
 class VendorRegister extends Component {
     constructor(props) {
       super(props)
@@ -37,13 +39,18 @@ class VendorRegister extends Component {
     }
     onSubmit(e){
         e.preventDefault()
-        console.log(this.state.selectedFile)
-            let data={
-                name:this.state.name,
-                location:this.state.selectedFile
-            }
-        let uid = localStorage.getItem("uid")
-        this.props.createVendorAccount(data,uid)
+        const rdata={
+            name:this.state.name,
+            geo:this.state.location,
+            phone:this.props.match.params.phno
+        }
+        const uid = localStorage.getItem("uid")
+        database.ref("vendor/"+uid).push(rdata).then(res=>{
+            this.props.history.push("/vendor/dashboard")
+        })
+        .catch(err=>{
+            console.log(err)
+        })
     }
     
     render() {
@@ -51,7 +58,7 @@ class VendorRegister extends Component {
             <div>
                 <form onSubmit = {this.onSubmit}>
                 <div className="form-group">
-                <input type="text" name="name" value={this.state.name} onChange={this.onChange}/>
+                <input type="text" className="form-control" name="name" value={this.state.name} onChange={this.onChange}/>
                 </div>
                 <div className="form-group">
                 <button type="button" onClick={this.getGeoLocation}>
@@ -71,4 +78,4 @@ class VendorRegister extends Component {
     }
 }
 
-export default connect(null,{createVendorAccount})(VendorRegister);
+export default connect(null,{createVendorAccount})(withRouter(VendorRegister));

@@ -29,7 +29,10 @@ class Navigation extends Component {
 
   </Nav>
     {
-      auth.utype==="user"?<Link to={`/cart/${uid}`}>cart</Link>:null
+      auth.utype==="user"?<Link className="mh2" to={`/cart/${uid}`}>cart</Link>:null
+    }
+    {
+      auth.isAuthenticated?<Link className="mh2" to={`/`}>logout</Link>:null
     }
   </Navbar.Collapse>
 </Navbar>

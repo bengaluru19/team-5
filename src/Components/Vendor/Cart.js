@@ -18,6 +18,31 @@ export default class Cart extends Component {
             this.setState({data:data})
         })
     }
+    placeOrder(vid,data){
+        let uid = localStorage.getItem("uid");
+        let ids=[]
+        let qty=[]
+        let nms=[]
+        data.forEach(obj=>{
+            ids.push(obj.id)
+            qty.push(1)
+            nms.push(obj.name)
+        })
+        database.ref("orders").push({
+            ids:ids,
+            qty:qty,
+            nms:nms,
+            vendorId:vid,
+            status:"pending",
+            userId:uid
+        }).then(obj=>{
+            console.log("success")
+        })
+        .catch(err=>{
+            console.log("err")
+        })
+
+    }
     onDelete(id){
         let uid= localStorage.getItem("uid");
         database.ref("user/"+uid+"/cart/"+id).remove().then(obj=>{
@@ -68,6 +93,7 @@ export default class Cart extends Component {
             <div className="row">
             <h4>Cart</h4>
             <h4>Total: {total} </h4>
+            <Button variant="outline-info" onClick={this.placeOrder.bind(this,"1903f612",data)}>Place order</Button>
             </div>
             <div className="mt3">
             {view}
